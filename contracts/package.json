@@ -9,7 +9,7 @@
     "clean": "yarn hardhat clean",
     "compile": "yarn hardhat compile",
     "test": "yarn hardhat test",
-    "deploy:local": "yarn clean && yarn compile && yarn run build && yarn hardhat run build/scripts/basic-access-control.deploy.js"
+    "deploy:local": "yarn clean && yarn compile && yarn run build && yarn hardhat run build/scripts/air-vault.deploy.js"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "2.0.2",
