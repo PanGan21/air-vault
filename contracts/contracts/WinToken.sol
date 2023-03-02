@@ -10,8 +10,9 @@ contract WinToken is ERC20 {
         minter = msg.sender;
     }
 
-    function mint(address to, uint256 amount) public {
+    function mint(address to, uint256 amount) public returns (bool) {
         require(msg.sender == minter, "only minter can mint new tokens");
         _mint(to, amount);
+        return true;
     }
 }
