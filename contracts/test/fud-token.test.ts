@@ -1,4 +1,3 @@
-import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import { expect } from "chai";
 import { Signer } from "ethers";
 import { ethers } from "hardhat";
@@ -15,7 +14,6 @@ describe("FudToken", () => {
   const MAX_SUPPLY = 1500000;
 
   before(async () => {
-    // Get contract and accounts
     [owner, user1, user2] = await ethers.getSigners();
     fudTokenFactory = await ethers.getContractFactory("FudToken", owner);
   });
