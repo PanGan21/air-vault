@@ -9,7 +9,7 @@ describe("WinToken", () => {
   let user1: Signer;
   let user2: Signer;
 
-  before(async () => {
+  beforeEach(async () => {
     [owner, user1, user2] = await ethers.getSigners();
     const winTokenFactory = await ethers.getContractFactory("WinToken", owner);
     winToken = await winTokenFactory.deploy();

@@ -13,7 +13,7 @@ describe("FudToken", () => {
   const INITIAL_SUPPLY = 1000000;
   const MAX_SUPPLY = 1500000;
 
-  before(async () => {
+  beforeEach(async () => {
     [owner, user1, user2] = await ethers.getSigners();
     fudTokenFactory = await ethers.getContractFactory("FudToken", owner);
   });
