@@ -16,8 +16,8 @@ var (
 	ErrInvalidKey = errors.New("invalid key")
 )
 
-func getSigner(ctx context.Context, client *ethclient.Client) (*bind.TransactOpts, error) {
-	privateKey, err := crypto.HexToECDSA(config.App.Blockchain.PrivateKey)
+func getSigner(ctx context.Context, client *ethclient.Client, privKey string) (*bind.TransactOpts, error) {
+	privateKey, err := crypto.HexToECDSA(privKey)
 	if err != nil {
 		return nil, err
 	}

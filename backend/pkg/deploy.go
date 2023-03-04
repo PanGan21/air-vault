@@ -4,6 +4,7 @@ import (
 	"context"
 	"math/big"
 
+	"github.com/PanGan21/air-vault/config"
 	airVaultTokenContract "github.com/PanGan21/air-vault/contracts/interfaces/air-vault"
 	fudTokenContract "github.com/PanGan21/air-vault/contracts/interfaces/fud-token"
 	winTokenContract "github.com/PanGan21/air-vault/contracts/interfaces/win-token"
@@ -32,7 +33,7 @@ func NewDeployer() Deployer {
 }
 
 func (d *deployer) Deploy(ctx context.Context, client *ethclient.Client, fudTokenSupply *big.Int) error {
-	fudTokenSigner, err := getSigner(ctx, client)
+	fudTokenSigner, err := getSigner(ctx, client, config.App.Blockchain.PrivateKey)
 	if err != nil {
 		return err
 	}
@@ -48,7 +49,7 @@ func (d *deployer) Deploy(ctx context.Context, client *ethclient.Client, fudToke
 
 	d.fudTokenContractAddress = fudTokenContractAddress
 
-	winTokenSigner, err := getSigner(ctx, client)
+	winTokenSigner, err := getSigner(ctx, client, config.App.Blockchain.PrivateKey)
 	if err != nil {
 		return err
 	}
@@ -64,7 +65,7 @@ func (d *deployer) Deploy(ctx context.Context, client *ethclient.Client, fudToke
 
 	d.winTokenContractAddress = winTokenContractAddressAddress
 
-	airVaultSigner, err := getSigner(ctx, client)
+	airVaultSigner, err := getSigner(ctx, client, config.App.Blockchain.PrivateKey)
 	if err != nil {
 		return err
 	}

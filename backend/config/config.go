@@ -29,6 +29,7 @@ var (
 type AppConfig struct {
 	Blockchain BlockchainConfig
 	Contract   ContractConfig
+	Demo       DemoConfig
 }
 
 type BlockchainConfig struct {
@@ -41,10 +42,18 @@ type BlockchainConfig struct {
 
 // ContractConfig struct
 type ContractConfig struct {
-	FudTokenSupply int64 `mapstructure:"fud_token_supply"`
-	GasLimit       int64 `mapstructure:"gas_limit"`
-	GasPrice       int64 `mapstructure:"gas_price"`
-	WeiFunds       int64 `mapstructure:"default_wei_funds"`
+	AirVaultAddress string `mapstructure:"air_vault_address"`
+	FudTokenAddress string `mapstructure:"fud_token_address"`
+	FudTokenSupply  int64  `mapstructure:"fud_token_supply"`
+	GasLimit        int64  `mapstructure:"gas_limit"`
+	GasPrice        int64  `mapstructure:"gas_price"`
+	WeiFunds        int64  `mapstructure:"default_wei_funds"`
+}
+
+type DemoConfig struct {
+	PrivateKey    string `mapstructure:"pk"`
+	DepositAmount int64  `mapstructure:"deposit_amount"`
+	Address       string `mapstructure:"address"`
 }
 
 // Setup bind command flags and environment variables

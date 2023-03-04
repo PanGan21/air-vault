@@ -2,13 +2,14 @@ build:
 	go build -o bin/airvault
 
 run: build
-	 ./bin/airvault
+	 ./bin/airvault run
 
 test:
 	go test -v ./...
 
 ganache:
-	ganache-cli --account="0x0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef,1000000000000000000000000000000000000000" --mnemonic="range pear quit paddle harvest glory insect tissue erupt spray sport child"
+	# ganache-cli --account="0x0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef,1000000000000000000000000000000000000000" --mnemonic="range pear quit paddle harvest glory insect tissue erupt spray sport child"
+	ganache-cli --mnemonic="range pear quit paddle harvest glory insect tissue erupt spray sport child"
 
 compile-contracts:
 	solc --optimize --abi ./contracts/solidity/AirVault.sol -o contracts/bin --overwrite
@@ -28,4 +29,10 @@ setup-contracts: compile-contracts generate-airvault-interface generate-fud-inte
 deploy:
 	go run main.go deploy
 
-.PHONY: build, run, test, ganache, compile-airvault, generate-contract-interface, setup-contracts, deploy
+deposit:
+	./bin/airvault deposit
+
+transfer-fud:
+	./bin/airvault transfer-fud
+
+.PHONY: build, run, test, ganache, compile-airvault, generate-contract-interface, setup-contracts, deploy, deposit, transfer-fud
