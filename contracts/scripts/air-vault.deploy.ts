@@ -9,7 +9,7 @@ import {
 } from "../types";
 
 async function main() {
-  const [deployer] = await ethers.getSigners();
+  const [deployer, user1] = await ethers.getSigners();
 
   const initialSupply = 1000000;
 
@@ -22,11 +22,10 @@ async function main() {
   const FudTokenContract = (await ethers.getContractFactory(
     "FudToken"
   )) as FudToken__factory;
-
   const fudTokenContract = (await FudTokenContract.deploy(
     initialSupply
   )) as FudToken;
-
+  await fudTokenContract.deployed();
   console.log("FudToken address:", fudTokenContract.address);
 
   console.log(
@@ -38,8 +37,8 @@ async function main() {
   const WinTokenContract = (await ethers.getContractFactory(
     "WinToken"
   )) as WinToken__factory;
-
   const winTokenContract = (await WinTokenContract.deploy()) as WinToken;
+  await winTokenContract.deployed();
 
   console.log("WinToken address:", winTokenContract.address);
 
@@ -52,13 +51,19 @@ async function main() {
   const AirVaultContract = (await ethers.getContractFactory(
     "AirVault"
   )) as AirVault__factory;
-
   const airVaultContract = (await AirVaultContract.deploy(
     fudTokenContract.address,
     winTokenContract.address
   )) as AirVault;
+  await airVaultContract.deployed();
 
   console.log("AirVault address:", airVaultContract.address);
+
+  await fudTokenContract.transfer(user1.address, 10000);
+  const user1FudBalance = await fudTokenContract.balanceOf(user1.address);
+  console.log(
+    `user1 with address ${user1.address} has ${user1FudBalance} FUD Tokens`
+  );
 }
 
 main()
