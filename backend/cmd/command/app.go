@@ -31,6 +31,7 @@ func NewRootCommand(ctx context.Context) *cobra.Command {
 	rootCommand.AddCommand(NewRunnerCommand(ctx))
 	rootCommand.AddCommand(NewDepositCommand(ctx))
 	rootCommand.AddCommand(NewTransferFudCommand(ctx))
+	rootCommand.AddCommand(NewWithdrawCommand(ctx))
 
 	return rootCommand
 }

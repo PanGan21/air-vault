@@ -2,11 +2,13 @@ blockchain:
   address: http://127.0.0.1:8545
   ws: ws://127.0.0.1:8545
   pk: 4fa5ed93f9f53fa6c824abd95808ff068e5a59bd6edbf21459a63cc5c03a4fb9
-  timeout: 1s
+  timeout: 20s
 contract:
   air_vault_address: 0xb80Bd2B48b667ef1dE98F1Ddf6D42D1d4e64EeED
   fud_token_address: 0xC2b7a7ac3c9879009cfa9A3B49623Dec6cCbE920
+  win_token_address: 0x2f832320751186B076F7b5Eb44c1cEB0bE4E5Fc2
   fud_token_supply: 1000000
+  mint_proportion: 5
   gas_limit: 3000000
   gas_price: 1000000
   wei_funds: 0
@@ -14,3 +16,4 @@ demo:
   pk: 78d882352cecdeadfcf7298f108eeecd4a8228acb00a7fd38d4f7486313b6dbc
   address: 0x575a186c0b2edEF3c893F6Bc4E7B7142d72F6058
   deposit_amount: 100
+  withdraw_amount: 50

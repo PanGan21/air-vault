@@ -35,4 +35,7 @@ deposit:
 transfer-fud:
 	./bin/airvault transfer-fud
 
-.PHONY: build, run, test, ganache, compile-airvault, generate-contract-interface, setup-contracts, deploy, deposit, transfer-fud
+withdraw:
+	./bin/airvault withdraw
+
+.PHONY: build, run, test, ganache, compile-airvault, generate-contract-interface, setup-contracts, deploy, deposit, transfer-fud, withdraw
