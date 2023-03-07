@@ -4,7 +4,7 @@ A poc for airdrops
 
 ## Airdrop system
 
-Win tokens will be distributed by by airdrop every X blocks to each user who has had FUD tokens deposited during this interval. A separate Golang service will airdrop WIN tokens by minting them directly to the depositor's address. The amount of airdropped tokens is equal to 5% of the average FUD token deposit over the last X blocks (X should be configurable)
+WIN tokens will be distributed by an airdrop every X blocks to each user who has had FUD tokens deposited during this interval. A separate Golang service will airdrop WIN tokens by minting them directly to the depositor's address. The amount of airdropped tokens is equal to 5% of the average FUD token deposit over the last X blocks (X should be configurable)
 
 ### Contracts directory
 
