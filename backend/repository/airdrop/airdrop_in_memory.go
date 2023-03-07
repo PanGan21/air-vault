@@ -75,47 +75,6 @@ func (a *airdropRepository) CreateChunk(user string, blockNumber int64, amount *
 	return airdropData, nil
 }
 
-// func (a *airdropRepository) CreateWithdrawChunk(user string, blockNumber int64, amount *big.Int) (AirdropData, error) {
-// 	a.mu.Lock()
-// 	defer a.mu.Unlock()
-
-// 	var airdropData AirdropData
-
-// 	tokensToBlocksChunks, ok := a.tokensToBlocksChunksByUser[user]
-// 	if !ok {
-// 		// That's because users are not persisted in the database
-// 		if !containsString(a.depositors, user) {
-// 			a.depositors = append(a.depositors, user)
-// 		}
-// 		return airdropData, fmt.Errorf("not enough funds to withdraw")
-// 	} else {
-// 		lastTokensToBlocksChunk := tokensToBlocksChunks[len(tokensToBlocksChunks)-1]
-// 		newTokensToBlocksChunk := TokensToBlocksChunk{
-// 			IntervalFUD:    amount,
-// 			BlockNumber:    blockNumber,
-// 			BlocksInterval: 0,
-// 		}
-
-// 		tokensToBlocksChunks[len(tokensToBlocksChunks)-1].BlocksInterval = blockNumber - lastTokensToBlocksChunk.BlockNumber
-// 		if tokensToBlocksChunks[len(tokensToBlocksChunks)-1].BlockNumber == blockNumber {
-// 			// Increase IntervalFUD of last element
-// 			tokensToBlocksChunks[len(tokensToBlocksChunks)-1].IntervalFUD = amount
-// 		} else {
-// 			a.tokensToBlocksChunksByUser[user] = append(tokensToBlocksChunks, newTokensToBlocksChunk)
-// 		}
-
-// 	}
-
-// 	airdropData = AirdropData{
-// 		Depositor:              user,
-// 		TokenToBlocks:          a.tokensToBlocksChunksByUser[user],
-// 		CurrentBlockNumber:     a.currentBlockNumber,
-// 		LastAirdropBlockNumber: a.lastAirdropBlockNumber,
-// 	}
-
-// 	return airdropData, nil
-// }
-
 func (a *airdropRepository) UpdateCurrentBlockNumber(blockNumber int64) int64 {
 	a.mu.Lock()
 	defer a.mu.Unlock()
