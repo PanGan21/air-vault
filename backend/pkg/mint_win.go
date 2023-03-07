@@ -66,23 +66,3 @@ func (w *winMinter) MintWin(ctx context.Context, client *ethclient.Client, toAdd
 
 	return nil
 }
-
-// WIN tokens in airdrop = proportion * (# FUD tokens deposited) * (# blocks deposited) / ( total # blocks)
-func calculateWinTokens(depositAmount *big.Int, numDepositedBlocks uint64, totalNumBlocks uint64) *big.Int {
-	// calculate the average deposit amount per block
-	averageDepositPerBlock := new(big.Int).Div(depositAmount, big.NewInt(int64(numDepositedBlocks)))
-
-	// calculate the percentage of the total block interval covered by the deposit interval
-	blockIntervalRatio := new(big.Float).Quo(new(big.Float).SetUint64(numDepositedBlocks), new(big.Float).SetUint64(totalNumBlocks))
-
-	// calculate the amount of WIN tokens to mint (proportion * average deposit per block * block interval ratio)
-	mintProportion := float64(config.App.Contract.MintProportion / 100)
-	winTokenAmount := new(big.Float).Mul(new(big.Float).SetInt(averageDepositPerBlock), new(big.Float).SetFloat64(mintProportion))
-	winTokenAmount = winTokenAmount.Mul(winTokenAmount, blockIntervalRatio)
-
-	// convert the result to a big.Int and round down
-	winTokenAmountInt := new(big.Int)
-	winTokenAmount.Int(winTokenAmountInt)
-
-	return winTokenAmountInt
-}

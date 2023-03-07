@@ -34,7 +34,7 @@ func withdraw(ctx context.Context) error {
 	}
 
 	withrawer := pkg.NewWithdrawRunner(config.App.Demo.PrivateKey, config.App.Demo.Address, config.App.Contract.AirVaultAddress, config.App.Contract.FudTokenAddress)
-	err = withrawer.CreateWithdraw(ctx, client, big.NewInt(config.App.Demo.DepositAmount))
+	err = withrawer.CreateWithdraw(ctx, client, big.NewInt(config.App.Demo.WithdrawAmount))
 	if err != nil {
 		return err
 	}

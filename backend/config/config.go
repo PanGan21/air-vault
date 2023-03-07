@@ -46,6 +46,7 @@ type ContractConfig struct {
 	FudTokenAddress string `mapstructure:"fud_token_address"`
 	WinTokenAddress string `mapstructure:"win_token_address"`
 	FudTokenSupply  int64  `mapstructure:"fud_token_supply"`
+	BlocksInterval  int64  `mapstructure:"blocks_interval"`
 	MintProportion  int64  `mapstructure:"mint_proportion"`
 	GasLimit        int64  `mapstructure:"gas_limit"`
 	GasPrice        int64  `mapstructure:"gas_price"`

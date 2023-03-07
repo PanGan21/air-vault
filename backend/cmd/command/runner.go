@@ -6,6 +6,7 @@ import (
 
 	"github.com/PanGan21/air-vault/config"
 	"github.com/PanGan21/air-vault/pkg"
+	airdropRepository "github.com/PanGan21/air-vault/repository/airdrop"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/spf13/cobra"
 )
@@ -34,8 +35,9 @@ func run(ctx context.Context) error {
 	}
 
 	// Perform dependency injection so implementations can be independent
+	airdropRepo := airdropRepository.NewAirdropRepository()
 	minter := pkg.NewWinMinterRunner(config.App.Blockchain.PrivateKey, config.App.Contract.WinTokenAddress)
-	appRunner := pkg.NewAppRunner(config.App.Blockchain.PrivateKey, config.App.Contract.AirVaultAddress, minter)
+	appRunner := pkg.NewAppRunner(config.App.Blockchain.PrivateKey, config.App.Contract.AirVaultAddress, minter, airdropRepo)
 	err = appRunner.Run(ctx, client)
 	if err != nil {
 		return err
