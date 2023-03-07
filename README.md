@@ -57,3 +57,9 @@ The private key, the account user and the amounts to be deposited and withdrawn 
 #### Private key handling
 
 The private key is already passed in the application as an environment variable from a yaml file. In order to make it more secure, the private key can become a secret that is being unwrapped and passed through pipelines which integrate with some kind of vault.
+
+### Improvements
+
+- Backend testing: unit tests as well as integration tests should be written
+- Database: Adding a persistent storage to the application could help not miss event.
+- Filter logs: On startup a filter of previous logs could be fired. The filter should be fired for blocks newer than the last stored block in the database.
